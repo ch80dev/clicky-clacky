@@ -50,6 +50,9 @@ class Input {
     }
 
     hover_sell(resource_type){
+        if ($("#" + resource_type + "_delta").hasClass('invisible')){
+            $("#" + resource_type + "_delta").removeClass('invisible');
+        }
         let quantity = juego.click_modifier;
         if (juego.click_modifier == 'all'){
             quantity = Math.round(juego.resources[resource_type]);
@@ -61,6 +64,8 @@ class Input {
 
 
     leave_cell(x, y){
+        
+        
         if (juego.map.at(x, y) != null){                        
             let resource_type = Config.terrain_resources[Config.terrain[juego.map.at(x, y)]];
             
@@ -78,7 +83,7 @@ class Input {
 
     leave_sell(resource_type){
         ui.show_delta('clicks_delta', "");
-        ui.show_delta(resource_type + "_delta", "");
+        $("#" + resource_type + "_delta").addClass('invisible');
     }
 
     modify_clicks(modifier){

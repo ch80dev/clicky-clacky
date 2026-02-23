@@ -67,3 +67,7 @@
     font-size: 25px;
     opacity: 0.8;
 }
+
+.invisible{
+    visibility: hidden;
+}

@@ -19,4 +19,4 @@ FIXED - If you have less than 11 clciks and you build a building, you can't clic
 BUG
 When you create a new tile, new tile caption stays bold.
 
-Hovering over sell makes it mad hinky and hard to track.
+Hovering over sell makes it mad hinky and hard to track. - mitigated not fixed
