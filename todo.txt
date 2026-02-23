@@ -1,0 +1,10 @@
+Publish February 7th
+
+remove jquery and bootstrap dependency
+
+remove other empties at the beginning
+
+extractors - only avaialble for specific terrains
+convertors - convert resource  to another resource 
+market - sells specific resource (1, 10, 100, 1000, etc)
+automators - automate the clicking process
