@@ -6,6 +6,29 @@ $(document).on('click', '.your-dynamic-element-class', function() {
     $(this).css('background-color', 'red');
 });
 
+$(document).on('mouseover', ".cell", function (e) {
+    let x = Number(this.id.split('-')[1]);
+    let y = Number(this.id.split('-')[2]);
+    juego.input.hover_cell(x, y)
+});
+
+$(document).on('mouseout', ".cell", function (e) {
+    let x = Number(this.id.split('-')[1]);
+    let y = Number(this.id.split('-')[2]);
+    juego.input.leave_cell(x, y)
+});
+
+$(document).on('mouseover', ".sell", function (e) {
+    let resource_type = this.id.split('-')[1];
+    juego.input.hover_sell(resource_type);
+});
+
+$(document).on('mouseout', ".sell", function (e) {
+    let resource_type = this.id.split('-')[1];
+    juego.input.leave_sell(resource_type);
+});
+
+
 $(document).on('contextmenu', ".terrain", function (e) {
     // Prevent the default browser context menu from appearing
     event.preventDefault();

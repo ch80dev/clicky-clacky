@@ -63,7 +63,7 @@ class UI{
 				if (modifier != 'all'){
 					modifier = modifier + "x";
 				}
-				txt += `<div class='resource'><span class='label'>${resource}: ${n} [${juego.prices[resource]}]</span> <button id='sell-${resource}' class='sell' ${disabled}><span class="arrow">&uarr;</span><span class="sell_modifier">${modifier}</span></button></div>`;
+				txt += `<div class='resource'><button id='sell-${resource}' class='sell' ${disabled}><span class="arrow">&uarr;</span><span class="sell_modifier">${modifier}</span></button>[${juego.prices[resource]}]<span class='label'>${resource}: ${n} <span id='${resource}_delta'></span></span> </div>`;
 
 				//txt += this.display_sell_buttons(resource);
 
@@ -98,5 +98,9 @@ class UI{
 		$("#context_menu").html(txt);
 		
 		
+	}
+
+	show_delta(id, txt){
+		$("#" + id).html(txt);
 	}
 }

@@ -1,3 +1,14 @@
+.bad{
+    color: red;
+}
+
+#clicks_container{
+    text-align: center;
+    font-size: 100px;
+}
+#clicks_delta{
+    font-size: 50px;
+}
 #click_modifiers{
     text-align: center;
 }
@@ -6,10 +17,15 @@
 }
 
 #clicks{
-    text-align: center;
-    font-size: 100px;
+    
+}
+.good{
+    color: green;
 }
 
+#new_tile_caption{
+    font-size: 30px;
+}
 
 
 #resources {

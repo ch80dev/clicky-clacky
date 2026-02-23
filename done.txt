@@ -1,3 +1,4 @@
 26-02-23
 for sell button, add 1, all, modifiers to it.
 create more of a difference betwene forest and plains
+When you hover, show how many resources you will get on the tile, + resources next to it, and - next to clicks
