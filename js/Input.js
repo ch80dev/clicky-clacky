@@ -31,6 +31,7 @@ class Input {
 
     modify_clicks(modifier){
         juego.click_modifier = modifier;
+        
     }
 }
 

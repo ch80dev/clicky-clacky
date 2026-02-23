@@ -12,11 +12,42 @@
 
 
 
-#resources{
-    text-align: center;
+#resources {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+/* each resource line */
+.resource {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 4px 0;
     font-size: 50px;
 }
 
-.sell{
-    font-size: 50px;
+/* sell button layout */
+.sell {
+     display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    width: 60px;      /* ← controls button width */
+    height: 60px;     /* ← controls button height */
+
+    padding: 0;
+    ;
+}
+
+.sell .arrow {
+    font-size: 25px;
+}
+
+.sell_modifier {
+    font-size: 25px;
+    opacity: 0.8;
 }

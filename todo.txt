@@ -10,14 +10,9 @@ automators - automate the clicking process
 once you reveal all the lands, the game feels over.
 
 
-for sell button, add 1, all, modifiers to it.
 
 When you hover, show how many resources you will get on the tile, + resources next to it, and - next to clicks
 
 BAD DESIGN:
 FIXED - If you have less than 11 clciks and you build a building, you can't click anymore.
 
-
-DONE 
-
-create more of a difference betwene forest and plains

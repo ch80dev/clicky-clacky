@@ -59,7 +59,11 @@ class UI{
 				disabled = " disabled ";
 			}
 			if (this.revealed[resource]){
-				txt += `${resource}: ${n} [${juego.prices[resource]}] <button id='sell-${resource}' class='sell' ${disabled}>&uarr;</button>`;
+				let modifier = juego.click_modifier;
+				if (modifier != 'all'){
+					modifier = modifier + "x";
+				}
+				txt += `<div class='resource'><span class='label'>${resource}: ${n} [${juego.prices[resource]}]</span> <button id='sell-${resource}' class='sell' ${disabled}><span class="arrow">&uarr;</span><span class="sell_modifier">${modifier}</span></button></div>`;
 
 				//txt += this.display_sell_buttons(resource);
 
