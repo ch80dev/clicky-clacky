@@ -1,4 +1,6 @@
 class Config {
+	static base_building_cost = 10;
+	static base_tile_cost = 1;
 	static building_captions = {
 		farm: "Create one grain every time any resource is harvested",
 		fishery: "Create one fish every time any resource is harvested",
@@ -24,7 +26,7 @@ class Config {
 	static max_y = 9;
 	static rounding_to  = 10;
 	static terrain = [
-		null, 'plains', 'forest', 'mountains', 'lake',
+		null, 'plains', 'forest', 'mountains', 'lake', 'gold', 'silver', 'coal', 'iron',
 	]
 	static terrain_resources = {
 		forest: 'wood',
@@ -33,5 +35,15 @@ class Config {
 		lake: 'fish',
 
 	};
+	static terrain_unlocks = {
+		plains: ['forest'],
+		forest: ['plains', 'lake'],
+		lake: ['plains', 'forest', 'mountains'],
+		mountains: ['gold', 'silver', 'coal', 'iron'],
+		gold: ['mountains'],
+		silver: ['mountains'],
+		coal: ['mountains'],
+		iron: ['mountains'],
+	}
 
 }

@@ -18,11 +18,11 @@ class UI{
 				let cell_txt = "";
 				if (juego.map.at(x, y) != null){
 					cell_class = `terrain ${Config.terrain[juego.map.at(x, y)]}`;
-				} else if (juego.map.how_many_adjacent_not(x, y, null, true)){
+				} else if (juego.map.how_many_adjacent_not(x, y, null, true) && juego.clicks > juego.new_tile_cost){
 					cell_class = "empty";
 				}
 				if (juego.map.buildings[x][y] != null){
-					cell_txt = "O";
+					cell_txt = "X";
 				}
 				txt += `<div id='cell-${x}-${y}' class='cell ${cell_class}'>${cell_txt}</div>`
 			}
@@ -42,6 +42,7 @@ class UI{
 	}
 
 	refresh(){
+		$("#new_tile_cost").html(juego.new_tile_cost);
 		this.display_map();
 		let txt = "";
 		for (let resource in juego.resources){
@@ -67,7 +68,7 @@ class UI{
 		$(".click").prop('disabled', false);
 		$(`#click-${juego.click_modifier}`).prop('disabled', true);
 		$("#resources").html(txt);
-		$("#clicks").html(juego.clicks);
+		$("#clicks").html((Math.round(juego.clicks * Config.rounding_to) / Config.rounding_to).toFixed());
 	}
 
 	show_context_menu(x, y){
@@ -76,20 +77,19 @@ class UI{
 			return;
 		}
 		let buildings = juego.fetch_buildings(Config.terrain[space]);
-		console.log(x, y, buildings);
 		let txt = "";
 		for (let building of buildings){
 			
-			let cost = 10;
+			let cost = juego.fetch_building_cost(building);
 			let disabled = "";
-			if (juego.clicks < cost){
+			if (juego.clicks <= cost){
 				disabled = " disabled ";
 			}
 			let build_button = `<button id='build-${x}-${y}-${building}' class='build' ${disabled}>build</button>`;
 			if (juego.map.buildings[x][y] == building){
 				build_button = " [ built ]";
 			}
-			txt += `${building}: ${Config.building_captions[building]} ${build_button}`
+			txt += `${building}: ${Config.building_captions[building]} Cost: ${cost} ${build_button}`
 		}
 		$("#context_menu").html(txt);
 		

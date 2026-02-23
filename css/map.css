@@ -1,36 +1,73 @@
 .cell {
     width: 50px;
     height: 50px;
-    border: 1px black solid;
-    float:left;
+    
+    float: left;
     font-size: 50px;
 }
+
+/* border for non-empty cells */
+.cell:not(.empty){
+    border: 1px white solid;
+}
+
+/* ===== RESOURCES ===== */
+
+.coal{
+    background-color: #3b3b3b; /* darker charcoal */
+}
+
+.gold{
+    background-color: #e3b505; /* softer gold */
+}
+
+.iron{
+    background-color: #b44343; /* toned-down red */
+}
+
+.silver{
+    background-color: #c9ccd1;
+}
+
+
+/* ===== BASE CELL TYPES ===== */
+
+.empty,
+.terrain{
+    border: 1px black solid;
+}
+
 .empty{
-    background-color: lightgray;
-}
-
-.forest {
-    background-color: darkgreen;
+    background-color: #d9d9d9; /* neutral light gray */
 }
 
 
-.lake{
-    background-color: blue;
-}
-
+/* ===== TERRAIN ===== */
 
 .plains{
-    background-color: green;
+    background-color: #8fcb5a; /* bright open grass */
+}
+
+.forest{
+    background-color: #2f6b3f; /* darker dense forest */
+}
+
+.lake{
+    background-color: #3a7bd5; /* calmer blue */
 }
 
 .mountains{
-    background-color: grey;
+    background-color: #7a7f87; /* cool rocky gray */
 }
 
 
-.terrain, .empty{
+/* ===== INTERACTION ===== */
+
+.terrain,
+.empty{
     cursor: pointer;
 }
+
 .row{
-    clear:both;
+    clear: both;
 }

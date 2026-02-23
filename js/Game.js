@@ -1,12 +1,13 @@
-class Game{
+class Game{	
+	base_building_cost = Config.base_building_cost;
 	buildings = [];
-	click_modifier = 0;
-	clicks = 11;
+	click_modifier = 1;
+	clicks = 1;
 	first_turn = false;
-	input = new Input();
-	
+	input = new Input();	
 	loop = new Loop();
 	map = new GameMap (Config.max_x, Config.max_y);
+	new_tile_cost = Config.base_tile_cost;	
 	player = new Player();
 	prices = {
 
@@ -20,23 +21,35 @@ class Game{
 		}
 	}
 
-	build(x, y, building){
-		console.log(x, y, building);
-		let cost = 10;
+	build(x, y, building_type){
+		let cost = this.fetch_building_cost(building_type)
 		if (juego.clicks < cost){
 			return;
 		}
+		this.base_building_cost *= 2;
 		this.clicks -= cost;
 		//still need to validate building
-		this.buildings.push({x: x, y: y, type: building});
-		this.map.build(x, y, building);
-		console.log(this.buildings, this.map.buildings);
+		this.buildings.push({x: x, y: y, type: building_type});
+		this.map.build(x, y, building_type);
 	}
+
+	fetch_building_cost(building_type){
+        return this.base_building_cost * (this.fetch_num_of_buildings(building_type) + 1);
+    }
 
 	fetch_buildings(terrain){
 		let buildings = Config.building_requirements.all.concat(Config.building_requirements[terrain]);
 		return buildings;
 		
+	}
+	fetch_num_of_buildings(building_type){
+		let n = 0;
+		for (let building of this.buildings){
+			if (building.type == building_type){
+				n ++;
+			}
+		}
+		return n;
 	}
 
 	raise_other_prices(not_resource){
@@ -56,8 +69,7 @@ class Game{
 				continue;
 			}
 			console.log(building.type);
-			console.log(Config.building_outputs)			
-			console.log(Config.building_outputs[building.type])
+			
 			this.resources[Config.building_outputs[building.type]] += clicks;
 		}
 	}

@@ -1,4 +1,5 @@
 class GameMap {
+    active_tiles = 1;
     buildings = [];
     center = 4;
     grid = [];
@@ -29,8 +30,40 @@ class GameMap {
         this.buildings[x][y] = building;
     }
 
+    fetch_adjacent_terrain(pos_x, pos_y){
+        let terrain = [];
+        for (let x = pos_x - 1; x <= pos_x + 1; x ++ ){
+            for (let y = pos_y - 1; y <= pos_y + 1; y ++ ){
+                if (!this.is_valid(x, y) || this.at(x, y) == null || (x == pos_x && y == pos_y)){
+                    continue;
+                }
+                
+                if (!terrain.includes(Config.terrain[this.at(x, y)])){
+                    terrain.push(Config.terrain[this.at(x, y)]);
+                }
+            }    
+        }
+        return terrain;
+    }
+    
+
+
     fetch_distance(from_x, from_y, to_x, to_y){
 	    return Math.sqrt(Math.pow(from_x - to_x, 2) + Math.pow(from_y - to_y, 2))
+    }
+
+    fetch_most_terrain(x, y){
+        let terrain_arr = this.fetch_adjacent_terrain(x, y);
+        let most = null;
+        let n = 0;
+        for (let terrain of terrain_arr){
+            let count = this.how_many_adjacent(x, y, Config.terrain.indexOf(terrain), false);
+            if (count > n){
+                n = count;
+                most = terrain;
+            }
+        }
+        return most;
     }
 
     generate(){
@@ -38,7 +71,20 @@ class GameMap {
     }
 
     generate_new_tile(x, y){
-        this.is(x, y, rand_num(1, Config.terrain.length - 1));
+        let rand = rand_num(1, 2);
+        
+        let same_tile = rand_num(1, 2) == 1;
+        let most = this.fetch_most_terrain(x, y);
+        this.active_tiles ++;
+        juego.new_tile_cost *=  2;//this.active_tiles * Config.base_tile_cost;
+        if (same_tile){
+            this.is(x, y, Config.terrain.indexOf(most));
+            return;
+        }
+        
+        let terrain = Config.terrain_unlocks[most][rand_num(0, Config.terrain_unlocks[most].length - 1)];
+        
+        this.is(x, y, Config.terrain.indexOf(terrain));
     }
 
     how_many_adjacent(pos_x, pos_y, value, orthogonal){
